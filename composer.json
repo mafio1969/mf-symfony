@@ -15,6 +15,7 @@
         "symfony/yaml": "5.3.*"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest"
     },
     "config": {
         "optimize-autoloader": true,
@@ -39,8 +40,10 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
-        "auto-scripts": [
-        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
         "post-install-cmd": [
             "@auto-scripts"
         ],
