@@ -6,3 +6,4 @@
 /secret/
 /.phpunit.result.cache
 /main/.env.local
+/main/vendor/
