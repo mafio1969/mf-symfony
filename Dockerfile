@@ -36,7 +36,7 @@ COPY container.d/supervisord-main.conf /etc/supervisord.conf
 COPY container.d/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY container.d/nginx/enabled-symfony.conf /etc/nginx/conf.d/enabled-symfony.conf
 COPY --chown=docker:docker /main /main
-
+WORKDIR /main
 STOPSIGNAL SIGQUIT
 EXPOSE 8080 9000
 CMD ["supervisord", "-n"]
