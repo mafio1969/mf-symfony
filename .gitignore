@@ -8,3 +8,5 @@
 /main/.env.local
 /main/vendor/
 /main/var/
+/main/vendor
+/main/var

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7b163d82-e26c-4c46-aec0-2fe524c3b3a7" name="xdebug" url="http://localhost:8555">
+        <fileTransfer mountedRoot="$PROJECT_DIR$/main" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
