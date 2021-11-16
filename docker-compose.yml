@@ -6,7 +6,6 @@ services:
       context: ./
     ports:
       - "${WEB_PORT:-8070}:8080"
-      - "9005:9000"
     image: mafio69/mf-symfony
     depends_on:
       - database

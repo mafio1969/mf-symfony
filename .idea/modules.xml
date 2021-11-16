@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/finalApi-master.iml" filepath="$PROJECT_DIR$/.idea/finalApi-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mf-symfony.iml" filepath="$PROJECT_DIR$/.idea/mf-symfony.iml" />
     </modules>
   </component>
 </project>
