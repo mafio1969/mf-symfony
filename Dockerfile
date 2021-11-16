@@ -1,11 +1,11 @@
-FROM mafio69/phpdebian:latest
-
+FROM mafio69/phpdebian
 
 USER root
 WORKDIR /
 ENV DEBIAN_FRONTEND=noninteractive \
-  APP_ENV=${APP_ENV:-dev} \
-  XDEBUG_AVAILABLE=${XDEBUG_AVAILABLE:-off}
+  APP_ENV=${APP_ENV:-prod} \
+  DISPLAY_ERROR=${DISPLAY_ERROR:-off} \
+  XDEBUG_MODE=${XDEBUG_MODE:-off}
 COPY container.d/cron-task /etc/cron.d/crontask
 COPY container.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY container.d/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -29,7 +29,7 @@ RUN  mkdir -p /var/log/cron/ \
        && rm -f /etc/supervisor/conf.d/supervisord.conf \
        && touch -c /var/log/cron/cron.log \
        && touch -c /usr/share/nginx/logs/error.log
-# COPY container.d/xdebug-on.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 COPY container.d/cron-task /etc/cron.d/crontask
 COPY container.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY container.d/supervisord-main.conf /etc/supervisord.conf

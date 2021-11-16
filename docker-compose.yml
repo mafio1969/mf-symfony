@@ -1,11 +1,11 @@
 version: '3'
 services:
   api:
-    container_name: mf-symfony
+    container_name: mf-api--symfony
     build:
       context: ./
     ports:
-      - "${WEB_PORT:-8070}:8080"
+      - "${WEB_PORT:-8555}:8080"
     image: mafio69/mf-symfony
     depends_on:
       - database
@@ -32,10 +32,11 @@ services:
       - EMAIL_USER=${EMAIL_USER:-user}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD:-password}
       - EMAIL_HOST=${EMAIL_HOST:-mailtrap}
-      - XDEBUG_MODE=${XDEBUG_MODE:-debug}
+      - XDEBUG_MODE=${XDEBUG_MODE}
       - XDEBUG_REMOTE_AUTOSTART=1
       - XDEBUG_CLIENT_HOST=${XDEBUG_CLIENT_HOST:-host.docker.internal}
       - XDEBUG_CLIENT_PORT=${XDEBUG_CLIENT_PORT:-9003}
+      - DISPLAY_ERROR=${DISPLAY_ERROR}
     volumes:
       - ./main:/main
       - ./logs/symfony-logs:/main/var/log
@@ -50,7 +51,7 @@ services:
       retries: 3
 
   database:
-    container_name: mf-mysql
+    container_name: mf-api--mysql
     ports:
       - "${DATABASE_PORT_LOCAL:-3310}:3306"
     image: mysql:5.7
@@ -62,7 +63,7 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
 
   mailtrap:
-    container_name: mf-mailtrap
+    container_name: mf-api--mailtrap
     image: mailhog/mailhog
     logging:
       driver: 'none'  # disable saving logs
