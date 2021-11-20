@@ -31,15 +31,16 @@ RUN  mkdir -p /var/log/cron/ \
        && touch -c /usr/share/nginx/logs/error.log
 
 COPY container.d/cron-task /etc/cron.d/crontask
+COPY container.d/custom.ini /usr/local/etc/php/conf.d/custom.ini
 COPY container.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY container.d/supervisord-main.conf /etc/supervisord.conf
 COPY container.d/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY container.d/nginx/enabled-symfony.conf /etc/nginx/conf.d/enabled-symfony.conf
 COPY --chown=docker:docker /main /main
 WORKDIR /main
-RUN composer install -o
+RUN rm -Rf /main
 STOPSIGNAL SIGQUIT
-EXPOSE 8080 9000
+EXPOSE 8080
 CMD ["supervisord", "-n"]
 
 
