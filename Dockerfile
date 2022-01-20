@@ -7,10 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
   DISPLAY_ERROR=${DISPLAY_ERROR:-off} \
   XDEBUG_MODE=${XDEBUG_MODE:-off} \
   PHP_DATE_TIMEZONE=${PHP_DATE_TIMEZONE:-Europe/Warsaw}
-COPY container.d/cron-task /etc/cron.d/crontask
-COPY container.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY container.d/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY container.d/nginx/enabled-symfony.conf /etc/nginx/conf.d/enabled-symfony.conf
+
 RUN  mkdir -p /var/log/cron/ \
         && ln -sf /var/log/nginx/project_access.log stdout \
     	&& mkdir -p /usr/share/nginx/logs/ \
@@ -36,14 +33,11 @@ COPY container.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY container.d/supervisord-main.conf /etc/supervisord.conf
 COPY container.d/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY container.d/nginx/enabled-symfony.conf /etc/nginx/conf.d/enabled-symfony.conf
-# COPY --chown=docker:docker /main /main
 COPY --chown=1000:docker /main /main
+
 WORKDIR /main
 RUN rm -Rf /main
 
 STOPSIGNAL SIGQUIT
 EXPOSE 8080
 CMD ["supervisord", "-n"]
-
-
-
